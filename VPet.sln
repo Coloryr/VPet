@@ -1,4 +1,3 @@
-
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.3.32804.467
@@ -14,9 +13,18 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{954E332A-9785-4B38-9C5E-C8262E83C30E}"
 	ProjectSection(SolutionItems) = preProject
 		.editorconfig = .editorconfig
+		Directory.Build.props = Directory.Build.props
 	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VPet.Solution", "VPet.Solution\VPet.Solution.csproj", "{4DF0C967-9AF9-4F39-968F-21F604DAFE11}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "WPF", "WPF", "{4AC3D0A3-0367-4D06-AA8D-514BB5A1C28F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Avalonia", "Avalonia", "{20642038-1B7D-4BF8-841D-8B8F9FAF89FD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VPet.Avalonia.Core", "VPet.Avalonia.Core\VPet.Avalonia.Core.csproj", "{D913A0F8-38BE-458D-BC90-5811FE08F190}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VPet.Avalonia.Core.Desktop", "VPet.Avalonia.Core.Desktop\VPet.Avalonia.Core.Desktop.csproj", "{4B813F1C-86A3-4B13-B6D4-78CA95A9D87A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -88,9 +96,42 @@ Global
 		{4DF0C967-9AF9-4F39-968F-21F604DAFE11}.Release|x64.Build.0 = Release|Any CPU
 		{4DF0C967-9AF9-4F39-968F-21F604DAFE11}.Release|x86.ActiveCfg = Release|Any CPU
 		{4DF0C967-9AF9-4F39-968F-21F604DAFE11}.Release|x86.Build.0 = Release|Any CPU
+		{D913A0F8-38BE-458D-BC90-5811FE08F190}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D913A0F8-38BE-458D-BC90-5811FE08F190}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D913A0F8-38BE-458D-BC90-5811FE08F190}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{D913A0F8-38BE-458D-BC90-5811FE08F190}.Debug|x64.Build.0 = Debug|Any CPU
+		{D913A0F8-38BE-458D-BC90-5811FE08F190}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{D913A0F8-38BE-458D-BC90-5811FE08F190}.Debug|x86.Build.0 = Debug|Any CPU
+		{D913A0F8-38BE-458D-BC90-5811FE08F190}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D913A0F8-38BE-458D-BC90-5811FE08F190}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D913A0F8-38BE-458D-BC90-5811FE08F190}.Release|x64.ActiveCfg = Release|Any CPU
+		{D913A0F8-38BE-458D-BC90-5811FE08F190}.Release|x64.Build.0 = Release|Any CPU
+		{D913A0F8-38BE-458D-BC90-5811FE08F190}.Release|x86.ActiveCfg = Release|Any CPU
+		{D913A0F8-38BE-458D-BC90-5811FE08F190}.Release|x86.Build.0 = Release|Any CPU
+		{4B813F1C-86A3-4B13-B6D4-78CA95A9D87A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4B813F1C-86A3-4B13-B6D4-78CA95A9D87A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4B813F1C-86A3-4B13-B6D4-78CA95A9D87A}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{4B813F1C-86A3-4B13-B6D4-78CA95A9D87A}.Debug|x64.Build.0 = Debug|Any CPU
+		{4B813F1C-86A3-4B13-B6D4-78CA95A9D87A}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{4B813F1C-86A3-4B13-B6D4-78CA95A9D87A}.Debug|x86.Build.0 = Debug|Any CPU
+		{4B813F1C-86A3-4B13-B6D4-78CA95A9D87A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4B813F1C-86A3-4B13-B6D4-78CA95A9D87A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4B813F1C-86A3-4B13-B6D4-78CA95A9D87A}.Release|x64.ActiveCfg = Release|Any CPU
+		{4B813F1C-86A3-4B13-B6D4-78CA95A9D87A}.Release|x64.Build.0 = Release|Any CPU
+		{4B813F1C-86A3-4B13-B6D4-78CA95A9D87A}.Release|x86.ActiveCfg = Release|Any CPU
+		{4B813F1C-86A3-4B13-B6D4-78CA95A9D87A}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{7BD4CB1D-C8F3-4349-9BF0-CD11789130BA} = {4AC3D0A3-0367-4D06-AA8D-514BB5A1C28F}
+		{692CE45E-01A9-4500-8B1D-AFC0FE2767FA} = {4AC3D0A3-0367-4D06-AA8D-514BB5A1C28F}
+		{B5C2DD17-735F-4F9F-82E4-B8692AEC03F1} = {4AC3D0A3-0367-4D06-AA8D-514BB5A1C28F}
+		{DCAD838A-1A02-4BDF-962C-FD47C6006D28} = {4AC3D0A3-0367-4D06-AA8D-514BB5A1C28F}
+		{4DF0C967-9AF9-4F39-968F-21F604DAFE11} = {4AC3D0A3-0367-4D06-AA8D-514BB5A1C28F}
+		{D913A0F8-38BE-458D-BC90-5811FE08F190} = {20642038-1B7D-4BF8-841D-8B8F9FAF89FD}
+		{4B813F1C-86A3-4B13-B6D4-78CA95A9D87A} = {20642038-1B7D-4BF8-841D-8B8F9FAF89FD}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {8877951A-CCAB-426E-86D3-0334FC2D8834}

@@ -1,0 +1,301 @@
+<UserControl
+    x:Class="VPet.Avalonia.Core.Display.ToolBar"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:ll="clr-namespace:VPet.Avalonia.Core"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    d:DesignHeight="450"
+    d:DesignWidth="800"
+    mc:Ignorable="d">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Theme.xaml" />
+                <ResourceDictionary Source="basestyle.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <Grid Name="MainGrid">
+        <Border
+            Name="BdrPanel"
+            Margin="0,0,0,55"
+            VerticalAlignment="Bottom"
+            Background="{DynamicResource DARKPrimaryText}"
+            BorderBrush="{DynamicResource DARKPrimaryDarker}"
+            BorderThickness="1"
+            CornerRadius="5"
+            Cursor=""
+            IsVisible="False"
+            TextBlock.FontSize="24"
+            TextElement.FontSize="24">
+            <Grid Name="gdPanel" Margin="15">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="5" />
+                    <ColumnDefinition />
+                    <ColumnDefinition Width="5" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="30" />
+                    <RowDefinition Height="30" />
+                    <RowDefinition Height="30" />
+                    <RowDefinition Height="30" />
+                    <RowDefinition Height="30" />
+                    <RowDefinition Height="30" />
+                    <RowDefinition Height="30" />
+                    <RowDefinition Height="30" />
+                </Grid.RowDefinitions>
+                <TextBlock
+                    Name="Tlv"
+                    Grid.ColumnSpan="3"
+                    VerticalAlignment="Center"
+                    Foreground="{DynamicResource DARKPrimary}"
+                    Text="Lv 14" />
+                <Button
+                    Name="Button1"
+                    Grid.Row="2"
+                    Grid.Column="2"
+                    Grid.ColumnSpan="3"
+                    HorizontalAlignment="Right"
+                    VerticalAlignment="Center"
+                    Background="Transparent"
+                    Content="{ll:Str 详细}"
+                    Cursor="Hand"
+                    Foreground="{DynamicResource DARKPrimary}">
+                    <Button.ContentTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding}" TextDecorations="Underline" />
+                        </DataTemplate>
+                    </Button.ContentTemplate>
+                </Button>
+                <TextBlock
+                    Name="till"
+                    Grid.Row="1"
+                    Grid.ColumnSpan="5"
+                    Foreground="#FF4C4C"
+                    Text="{ll:Str 宠物已经生病\, 通过服用药物可以恢复}"
+                    TextWrapping="Wrap"
+                    ToolTip.Tip="{ll:Str 宠物已经生病\, 通过服用药物可以恢复}" />
+                <TextBlock
+                    Name="tfun"
+                    Grid.Row="1"
+                    Grid.ColumnSpan="5"
+                    Foreground="#4caf50"
+                    Text="{ll:Str 已关闭数据计算\, 可放心挂机}"
+                    TextWrapping="Wrap"
+                    ToolTip.Tip="{ll:Str 已关闭数据计算\, 可放心挂机}" />
+                <TextBlock
+                    Grid.Row="2"
+                    VerticalAlignment="Center"
+                    Text="{ll:Str 金钱}" />
+                <TextBlock
+                    Name="tMoney"
+                    Grid.Row="2"
+                    Grid.Column="2"
+                    Foreground="{DynamicResource DARKPrimary}"
+                    Text="$100,000" />
+                <TextBlock
+                    Grid.Row="3"
+                    VerticalAlignment="Center"
+                    Text="{ll:Str 经验}" />
+                <ProgressBar
+                    Name="pExp"
+                    Grid.Row="3"
+                    Grid.Column="2"
+                    Height="20"
+                    VerticalAlignment="Center"
+                    CornerRadius="10"
+                    FontSize="20"
+                    Foreground="{DynamicResource ProgressBarForeground}"
+                    Value="40" />
+                <TextBlock
+                    Name="tExp"
+                    Grid.Row="3"
+                    Grid.Column="4"
+                    HorizontalAlignment="Right"
+                    Foreground="{DynamicResource DARKPrimary}"
+                    Text="x1.0" />
+                <TextBlock
+                    Grid.Row="4"
+                    VerticalAlignment="Center"
+                    Text="{ll:Str 体力}" />
+                <ProgressBar
+                    Name="pStrength"
+                    Grid.Row="4"
+                    Grid.Column="2"
+                    Height="20"
+                    VerticalAlignment="Center"
+                    CornerRadius="10"
+                    FontSize="20"
+                    Foreground="{DynamicResource ProgressBarForeground}"
+                    Maximum="100"
+                    Value="40" />
+                <TextBlock
+                    Name="tStrength"
+                    Grid.Row="4"
+                    Grid.Column="4"
+                    HorizontalAlignment="Right"
+                    Foreground="{DynamicResource DARKPrimary}"
+                    Text="+1/t" />
+                <TextBlock
+                    Grid.Row="5"
+                    VerticalAlignment="Center"
+                    Text="{ll:Str 心情}" />
+                <ProgressBar
+                    Name="pFeeling"
+                    Grid.Row="5"
+                    Grid.Column="2"
+                    Height="20"
+                    VerticalAlignment="Center"
+                    CornerRadius="10"
+                    FontSize="20"
+					
+                    Foreground="{DynamicResource ProgressBarForeground}"
+                    Maximum="100"
+                    Value="60" />
+                <TextBlock
+                    Name="tFeeling"
+                    Grid.Row="5"
+                    Grid.Column="4"
+                    HorizontalAlignment="Right"
+                    Foreground="{DynamicResource DARKPrimary}"
+                    Text="+1/t" />
+                <TextBlock
+                    Grid.Row="6"
+                    VerticalAlignment="Center"
+                    Text="{ll:Str 饱腹度}" />
+                <ProgressBar
+                    Name="pStrengthFoodMax"
+                    Grid.Row="6"
+                    Grid.Column="2"
+                    Height="20"
+                    VerticalAlignment="Center"
+                    Background="#FFDDDDDD"
+                    CornerRadius="10"
+                    FontSize="20"
+                    Foreground="{DynamicResource ProgressBarForeground}"
+                    Maximum="100"
+                    Opacity="0.5"
+                    Value="90" />
+                <ProgressBar
+                    Name="pStrengthFood"
+                    Grid.Row="6"
+                    Grid.Column="2"
+                    Height="20"
+                    VerticalAlignment="Center"
+                    Background="{x:Null}"
+                    CornerRadius="10"
+                    FontSize="20"
+                    Foreground="{DynamicResource ProgressBarForeground}"
+                    Maximum="100"
+                    Value="80" />
+                <TextBlock
+                    Name="tStrengthFood"
+                    Grid.Row="6"
+                    Grid.Column="4"
+                    HorizontalAlignment="Right"
+                    Foreground="{DynamicResource DARKPrimary}"
+                    Text="+1/t" />
+                <TextBlock
+                    Grid.Row="7"
+                    VerticalAlignment="Center"
+                    Text="{ll:Str 口渴度}" />
+                <ProgressBar
+                    Name="pStrengthDrinkMax"
+                    Grid.Row="7"
+                    Grid.Column="2"
+                    Height="20"
+                    VerticalAlignment="Center"
+                    Background="#FFDDDDDD"
+                    CornerRadius="10"
+                    FontSize="20"
+                    Foreground="{DynamicResource ProgressBarForeground}"
+                    Maximum="100"
+                    Opacity="0.5"
+                    Value="90" />
+                <ProgressBar
+                    Name="pStrengthDrink"
+                    Grid.Row="7"
+                    Grid.Column="2"
+                    Height="20"
+                    VerticalAlignment="Center"
+                    Background="{x:Null}"
+                    CornerRadius="10"
+                    FontSize="20"
+                    Foreground="{DynamicResource ProgressBarForeground}"
+                    Maximum="100"
+                    Value="20" />
+                <TextBlock
+                    Name="tStrengthDrink"
+                    Grid.Row="7"
+                    Grid.Column="4"
+                    HorizontalAlignment="Right"
+                    Foreground="{DynamicResource DARKPrimary}"
+                    Text="+1/t" />
+            </Grid>
+        </Border>
+        <Menu
+            Width="500"
+            Height="60"
+            VerticalAlignment="Bottom"
+            ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+            ScrollViewer.VerticalScrollBarVisibility="Auto"
+            Style="{DynamicResource ToolBarMenuStyle}">
+            <Menu.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <UniformGrid Columns="5" />
+                </ItemsPanelTemplate>
+            </Menu.ItemsPanel>
+            <MenuItem
+                Name="MenuFeed"
+                Padding="0"
+                x:FieldModifier="public"
+                Header="{ll:Str 投喂}" />
+            <MenuItem
+                Name="MenuPanel"
+                Padding="0"
+                Header="{ll:Str 面板}" />
+            <MenuItem
+                Name="MenuInteract"
+                Width="99"
+                Padding="0"
+                Header="{ll:Str 互动}">
+                <MenuItem
+                    Name="Sleep"
+                    Click="Sleep_Click"
+                    Header="{ll:Str 睡觉}" />
+                <MenuItem
+                    Name="MenuStudy"
+                    MaxHeight="100"
+                    Header="{ll:Str 学习}"
+                    ScrollViewer.VerticalScrollBarVisibility="Auto" />
+                <MenuItem
+                    Name="MenuPlay"
+                    MaxHeight="100"
+                    Header="{ll:Str 玩耍}"
+                    ScrollViewer.VerticalScrollBarVisibility="Auto" />
+                <MenuItem
+                    Name="MenuWork"
+                    MaxHeight="100"
+                    Header="{ll:Str 工作}"
+                    ScrollViewer.VerticalScrollBarVisibility="Auto" />
+                <!--<MenuItem Header="说话"  IsEnabled="False" />-->
+            </MenuItem>
+            <MenuItem
+                Name="MenuDIY"
+                Padding="0"
+                Header="{ll:Str 自定}" />
+            <MenuItem
+                Name="MenuSetting"
+                Padding="0"
+                Header="{ll:Str 系统}">
+                <MenuItem
+                    Name="MenuMODConfig"
+                    Header="{ll:Str MOD设置}"
+                    Visibility="Collapsed" />
+            </MenuItem>
+        </Menu>
+    </Grid>
+</UserControl>
