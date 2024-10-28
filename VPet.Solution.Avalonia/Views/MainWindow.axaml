@@ -1,0 +1,44 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:VPet.Solution.Avalonia.ViewModels"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+		xmlns:ll="clr-namespace:VPet.Avalonia;assembly=VPet.Avalonia"
+        xmlns:views="clr-namespace:VPet.Solution.Avalonia.Views"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+		xmlns:vm="clr-namespace:VPet.Solution.ViewModels"
+        x:Class="VPet.Solution.Avalonia.Views.MainWindow"
+		Width="400" Height="450"
+        MinWidth="400" MinHeight="200"
+        Title="{ll:Str 'VPET 问题解决工具'}">
+	<Grid>
+		<Grid.RowDefinitions>
+			<RowDefinition Height="Auto" MinHeight="200" />
+			<RowDefinition />
+		</Grid.RowDefinitions>
+		<Label Height="Auto" Content="{ll:Str 'VPET 问题解决工具'}" FontSize="32" Style="{DynamicResource Label_BaseStyle}" />
+		<ComboBox MinWidth="150" x:Name="ComboBox_Langs" Grid.Column="1" HorizontalAlignment="Right"
+                VerticalAlignment="Top" ItemsSource="{Binding AvailableCultures}"
+                SelectedItem="{Binding CurrentCulture}" Style="{DynamicResource ComboBox_BaseStyle}">
+			<ComboBox.ContextMenu>
+				<ContextMenu>
+					<MenuItem Command="{Binding OpenLocalTextCommand}" Header="{ll:Str 打开翻译文本}" />
+				</ContextMenu>
+			</ComboBox.ContextMenu>
+		</ComboBox>
+		<Grid Grid.Row="1">
+			<Grid.RowDefinitions>
+				<RowDefinition />
+				<RowDefinition Height="Auto" />
+			</Grid.RowDefinitions>
+			<StackPanel>
+				<Button MinWidth="150" x:Name="Button_OpenSettingEditor" Click="Button_OpenSettingEditor_Click"
+                        Content="{ll:Str 打开设置编辑器}" FontSize="16" Style="{DynamicResource Button_BaseStyle}" />
+				<Button MinWidth="150" x:Name="Button_OpenSaveViewer" Click="Button_OpenSaveViewer_Click"
+                        Content="{ll:Str 打开存档查看器}" FontSize="16" Style="{DynamicResource Button_BaseStyle}" />
+			</StackPanel>
+			<Button Grid.Row="1" Command="{Binding FirstStartFailedCommand}" Content="{ll:Str '第一次启动桌宠打不开?'}"
+                    FontSize="16" Style="{DynamicResource LinkButtonStyle}" />
+		</Grid>
+	</Grid>
+</Window>

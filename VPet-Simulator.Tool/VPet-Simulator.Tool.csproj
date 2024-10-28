@@ -1,14 +1,14 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>net48</TargetFramework>
+    <TargetFramework>net8.0</TargetFramework>
     <OutputType>Exe</OutputType>
     <RootNamespace>VPet_Simulator.Tool</RootNamespace>
-	<AssemblyTitle>VPet-Simulator.Tool</AssemblyTitle>
-	<AssemblyVersion>1.0.0.0</AssemblyVersion>
-	<FileVersion>1.0.0.0</FileVersion>
-	<Product>VPet-Simulator.Tool</Product>
-	<Copyright>Copyright ©  2022</Copyright>
-	  <LangVersion>preview</LangVersion>
+    <AssemblyTitle>VPet-Simulator.Tool</AssemblyTitle>
+    <AssemblyVersion>1.0.0.0</AssemblyVersion>
+    <FileVersion>1.0.0.0</FileVersion>
+    <Product>VPet-Simulator.Tool</Product>
+    <Copyright>Copyright ©  2022</Copyright>
+    <LangVersion>preview</LangVersion>
   </PropertyGroup>
   <ItemGroup>
     <Compile Update="Properties\Resources.Designer.cs">

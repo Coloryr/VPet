@@ -79,6 +79,9 @@ csharp_style_prefer_readonly_struct = true:suggestion
 csharp_space_around_binary_operators = before_and_after
 csharp_indent_labels = one_less_than_current
 
+# CS8618: 在退出构造函数时，不可为 null 的字段必须包含非 null 值。请考虑添加 "required" 修饰符或声明为可为 null。
+dotnet_diagnostic.CS8618.severity = none
+
 [*.vb]
 #### 命名样式 ####
 

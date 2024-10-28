@@ -1,120 +1,120 @@
-﻿using LinePutScript;
-using MsBox.Avalonia;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using VPet.Avalonia.Core.Graph;
-using static VPet.Avalonia.Core.Graph.GraphCore;
+﻿//using LinePutScript;
+//using MsBox.Avalonia;
+//using System.Collections.Generic;
+//using System.IO;
+//using System.Linq;
+//using VPet.Avalonia.Core.Graph;
+//using static VPet.Avalonia.Core.Graph.GraphCore;
 
 
-namespace VPet.Avalonia.Core.Handle;
+//namespace VPet.Avalonia.Core.Handle;
 
-/// <summary>
-/// 宠物加载器
-/// </summary>
-public class PetLoader
-{
-    /// <summary>
-    /// 宠物图像
-    /// </summary>
-    public GraphCore Graph(int Resolution)
-    {
-        var g = new GraphCore(Resolution);
-        foreach (var p in path)
-            LoadGraph(g, new DirectoryInfo(p), p);
-        g.GraphConfig = Config;
-        return g;
-    }
-    /// <summary>
-    /// 图像位置
-    /// </summary>
-    public List<string> path = new List<string>();
-    /// <summary>
-    /// 宠物介绍名字
-    /// </summary>
-    public string Name;
-    /// <summary>
-    /// 宠物介绍
-    /// </summary>
-    public string Intor;
-    /// <summary>
-    /// 宠物默认名字
-    /// </summary>
-    public string PetName;
-    public Config Config;
-    public PetLoader(LpsDocument lps, DirectoryInfo directory)
-    {
-        var first = lps.First()!;
-        Name = first.Info;
-        Intor = first["intor"].Info;
-        PetName = first["petname"].Info;
-        path.Add(directory.FullName + "\\" + first["path"].Info);
-        Config = new Config(lps);
-    }
-    public delegate void LoadGraphDelegate(GraphCore graph, FileSystemInfo path, ILine info);
-    /// <summary>
-    /// 自定义图片加载方法
-    /// </summary>
-    public static Dictionary<string, LoadGraphDelegate> IGraphConvert = new Dictionary<string, LoadGraphDelegate>()
-    {
-        { "pnganimation", PNGAnimation.LoadGraph},
-        { "picture", Picture.LoadGraph },
-        { "foodanimation", FoodAnimation.LoadGraph },
-    };
-    /// <summary>
-    /// 加载图像动画
-    /// </summary>
-    /// <param name="graph">要加载的动画核心</param>
-    /// <param name="di">当前历遍的目录</param>
-    /// <param name="startuppath">起始目录</param>
-    public static void LoadGraph(GraphCore graph, DirectoryInfo di, string startuppath)
-    {
-        var list = di.EnumerateDirectories();
-        if (File.Exists(di.FullName + @"\info.lps"))
-        {
-            //如果自带描述信息,则手动加载
-            LpsDocument lps = new LpsDocument(File.ReadAllText(di.FullName + @"\info.lps"));
-            foreach (ILine line in lps)
-            {
-                if (IGraphConvert.TryGetValue(line.Name.ToLower(), out var func))
-                {
-                    line.Add(new Sub("startuppath", startuppath));
-                    var str = line.GetString("path");
-                    if (!string.IsNullOrEmpty(str))
-                    {
-                        var p = Path.Combine(di.FullName, str);
-                        if (Directory.Exists(p))
-                            func.Invoke(graph, new DirectoryInfo(p), line);
-                        else if (File.Exists(p))
-                            func.Invoke(graph, new FileInfo(p), line);
-                        else
-                            MessageBoxManager.GetMessageBoxStandard("", LocalizeCore.Translate("未知的图像位置: ") + p);
-                    }
-                    else
-                        func.Invoke(graph, di, line);
+///// <summary>
+///// 宠物加载器
+///// </summary>
+//public class PetLoader
+//{
+//    /// <summary>
+//    /// 宠物图像
+//    /// </summary>
+//    public GraphCore Graph(int Resolution)
+//    {
+//        var g = new GraphCore(Resolution);
+//        foreach (var p in path)
+//            LoadGraph(g, new DirectoryInfo(p), p);
+//        g.GraphConfig = Config;
+//        return g;
+//    }
+//    /// <summary>
+//    /// 图像位置
+//    /// </summary>
+//    public List<string> path = new List<string>();
+//    /// <summary>
+//    /// 宠物介绍名字
+//    /// </summary>
+//    public string Name;
+//    /// <summary>
+//    /// 宠物介绍
+//    /// </summary>
+//    public string Intor;
+//    /// <summary>
+//    /// 宠物默认名字
+//    /// </summary>
+//    public string PetName;
+//    public Config Config;
+//    public PetLoader(LpsDocument lps, DirectoryInfo directory)
+//    {
+//        var first = lps.First()!;
+//        Name = first.Info;
+//        Intor = first["intor"].Info;
+//        PetName = first["petname"].Info;
+//        path.Add(directory.FullName + "\\" + first["path"].Info);
+//        Config = new Config(lps);
+//    }
+//    public delegate void LoadGraphDelegate(GraphCore graph, FileSystemInfo path, ILine info);
+//    /// <summary>
+//    /// 自定义图片加载方法
+//    /// </summary>
+//    public static Dictionary<string, LoadGraphDelegate> IGraphConvert = new Dictionary<string, LoadGraphDelegate>()
+//    {
+//        { "pnganimation", PNGAnimation.LoadGraph},
+//        { "picture", Picture.LoadGraph },
+//        { "foodanimation", FoodAnimation.LoadGraph },
+//    };
+//    /// <summary>
+//    /// 加载图像动画
+//    /// </summary>
+//    /// <param name="graph">要加载的动画核心</param>
+//    /// <param name="di">当前历遍的目录</param>
+//    /// <param name="startuppath">起始目录</param>
+//    public static void LoadGraph(GraphCore graph, DirectoryInfo di, string startuppath)
+//    {
+//        var list = di.EnumerateDirectories();
+//        if (File.Exists(di.FullName + @"\info.lps"))
+//        {
+//            //如果自带描述信息,则手动加载
+//            LpsDocument lps = new LpsDocument(File.ReadAllText(di.FullName + @"\info.lps"));
+//            foreach (ILine line in lps)
+//            {
+//                if (IGraphConvert.TryGetValue(line.Name.ToLower(), out var func))
+//                {
+//                    line.Add(new Sub("startuppath", startuppath));
+//                    var str = line.GetString("path");
+//                    if (!string.IsNullOrEmpty(str))
+//                    {
+//                        var p = Path.Combine(di.FullName, str);
+//                        if (Directory.Exists(p))
+//                            func.Invoke(graph, new DirectoryInfo(p), line);
+//                        else if (File.Exists(p))
+//                            func.Invoke(graph, new FileInfo(p), line);
+//                        else
+//                            MessageBoxManager.GetMessageBoxStandard("", LocalizeCore.Translate("未知的图像位置: ") + p);
+//                    }
+//                    else
+//                        func.Invoke(graph, di, line);
 
-                }
-                else
-                {
-                    if (!string.IsNullOrEmpty(line.Name))
-                        MessageBoxManager.GetMessageBoxStandard("", LocalizeCore.Translate("未知的图像类型: ") + line.Name.ToLower());
-                }
-            }
-        }
-        else if (list.Count() == 0)
-        {//开始自动生成
-            var paths = di.GetFiles();
-            if (paths.Length == 0)
-                return;
-            if (paths.Length == 1)
-                Picture.LoadGraph(graph, paths[0], new Line("picture", "", "", new Sub("startuppath", startuppath)));
-            else
-                PNGAnimation.LoadGraph(graph, di, new Line("pnganimation", "", "", new Sub("startuppath", startuppath)));
-        }
-        else
-            foreach (var p in list)
-            {
-                LoadGraph(graph, p, startuppath);
-            }
-    }
-}
+//                }
+//                else
+//                {
+//                    if (!string.IsNullOrEmpty(line.Name))
+//                        MessageBoxManager.GetMessageBoxStandard("", LocalizeCore.Translate("未知的图像类型: ") + line.Name.ToLower());
+//                }
+//            }
+//        }
+//        else if (list.Count() == 0)
+//        {//开始自动生成
+//            var paths = di.GetFiles();
+//            if (paths.Length == 0)
+//                return;
+//            if (paths.Length == 1)
+//                Picture.LoadGraph(graph, paths[0], new Line("picture", "", "", new Sub("startuppath", startuppath)));
+//            else
+//                PNGAnimation.LoadGraph(graph, di, new Line("pnganimation", "", "", new Sub("startuppath", startuppath)));
+//        }
+//        else
+//            foreach (var p in list)
+//            {
+//                LoadGraph(graph, p, startuppath);
+//            }
+//    }
+//}

@@ -18,4 +18,9 @@
     <PackageReference Include="MessageBox.Avalonia" Version="3.1.6.13" />
     <PackageReference Include="SkiaSharp" Version="2.88.8" />
   </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\VPet.Avalonia\VPet.Avalonia.csproj" />
+	  <ProjectReference Include="..\VPet.Core\VPet.Core.csproj" />
+  </ItemGroup>
 </Project>
