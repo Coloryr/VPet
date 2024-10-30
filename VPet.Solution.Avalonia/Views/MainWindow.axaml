@@ -6,7 +6,6 @@
 		xmlns:ll="clr-namespace:VPet.Avalonia;assembly=VPet.Avalonia"
         xmlns:views="clr-namespace:VPet.Solution.Avalonia.Views"
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
-		xmlns:vm="clr-namespace:VPet.Solution.ViewModels"
         x:Class="VPet.Solution.Avalonia.Views.MainWindow"
 		Width="400" Height="450"
         MinWidth="400" MinHeight="200"

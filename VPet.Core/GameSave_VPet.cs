@@ -23,8 +23,6 @@ public class GameSave_VPet : IGameSave
     [Line(Type = LPSConvert.ConvertType.ToFloat, Name = "money")]
     public double Money { get; set; }
 
-
-    double exp { get; set; }
     /// <summary>
     /// 等级
     /// </summary>
@@ -41,7 +39,7 @@ public class GameSave_VPet : IGameSave
     [Line(type: LPSConvert.ConvertType.ToFloat, name: "exp")]
     public double Exp
     {
-        get => exp;
+        get => _exp;
         set
         {
             int lun = LevelUpNeed();
@@ -62,7 +60,7 @@ public class GameSave_VPet : IGameSave
                 }
                 lun = LevelUpNeed();
             }
-            exp = value;
+            _exp = value;
             if (islevelup)
             {
                 Event_LevelUp?.Invoke(new LevelUpEventArgs()
@@ -74,6 +72,9 @@ public class GameSave_VPet : IGameSave
             }
         }
     }
+
+    protected double _exp;
+
     public class LevelUpEventArgs : EventArgs
     {
         /// <summary>
@@ -119,12 +120,13 @@ public class GameSave_VPet : IGameSave
     /// <summary>
     /// 体力 0-100
     /// </summary>
-    public double Strength { get => strength; set => strength = Math.Min(StrengthMax, Math.Max(0, value)); }
+    [Line(Type = LPSConvert.ConvertType.ToFloat, IgnoreCase = true)]
+    public double Strength { get => _strength; set => _strength = Math.Min(StrengthMax, Math.Max(0, value)); }
 
     public double StrengthMax => 100 + (int)(Math.Pow(Level * (1 + LevelMax), 0.75) * 4);
 
-    [Line(Type = LPSConvert.ConvertType.ToFloat, IgnoreCase = true)]
-    protected double strength { get; set; }
+    protected double _strength;
+
     /// <summary>
     /// 待补充的体力,随着时间缓慢加给桌宠
     /// </summary>//让游戏更有游戏性
@@ -142,22 +144,24 @@ public class GameSave_VPet : IGameSave
     /// <summary>
     /// 饱腹度
     /// </summary>
+    [Line(Type = LPSConvert.ConvertType.ToFloat, IgnoreCase = true)]
     public double StrengthFood
     {
-        get => strengthFood; set
+        get => _strengthFood; set
         {
             value = Math.Min(StrengthMax, value);
             if (value <= 0)
             {
                 Health += value;
-                strengthFood = 0;
+                _strengthFood = 0;
             }
             else
-                strengthFood = value;
+                _strengthFood = value;
         }
     }
-    [Line(Type = LPSConvert.ConvertType.ToFloat)]
-    protected double strengthFood { get; set; }
+
+    protected double _strengthFood;
+
     /// <summary>
     /// 待补充的饱腹度,随着时间缓慢加给桌宠
     /// </summary>//让游戏更有游戏性
@@ -175,23 +179,24 @@ public class GameSave_VPet : IGameSave
     /// <summary>
     /// 口渴度
     /// </summary>
+    [Line(Type = LPSConvert.ConvertType.ToFloat, IgnoreCase = true)]
     public double StrengthDrink
     {
-        get => strengthDrink; set
+        get => _strengthDrink; set
         {
             value = Math.Min(StrengthMax, value);
             if (value <= 0)
             {
                 Health += value;
-                strengthDrink = 0;
+                _strengthDrink = 0;
             }
             else
-                strengthDrink = value;
+                _strengthDrink = value;
         }
     }
 
-    [Line(Type = LPSConvert.ConvertType.ToFloat)]
-    protected double strengthDrink { get; set; }
+    protected double _strengthDrink;
+
     /// <summary>
     /// 待补充的口渴度,随着时间缓慢加给桌宠
     /// </summary>//让游戏更有游戏性
@@ -209,9 +214,10 @@ public class GameSave_VPet : IGameSave
     /// <summary>
     /// 心情
     /// </summary>
+    [Line(Type = LPSConvert.ConvertType.ToFloat, IgnoreCase = true)]
     public double Feeling
     {
-        get => feeling; set
+        get => _feeling; set
         {
 
             value = Math.Min(FeelingMax, value);
@@ -219,15 +225,15 @@ public class GameSave_VPet : IGameSave
             {
                 Health += value / 2;
                 Likability += value / 2;
-                feeling = 0;
+                _feeling = 0;
             }
             else
-                feeling = value;
+                _feeling = value;
         }
     }
 
-    [Line(Type = LPSConvert.ConvertType.ToFloat)]
-    protected double feeling { get; set; }
+    protected double _feeling;
+
     /// <summary>
     /// 变化 心情
     /// </summary>
@@ -240,31 +246,32 @@ public class GameSave_VPet : IGameSave
     /// <summary>
     /// 健康(生病)(隐藏)
     /// </summary>
-    public double Health { get => health; set => health = Math.Min(100, Math.Max(0, value)); }
+    [Line(Type = LPSConvert.ConvertType.ToFloat, IgnoreCase = true)]
+    public double Health { get => _health; set => _health = Math.Min(100, Math.Max(0, value)); }
 
-    [Line(Type = LPSConvert.ConvertType.ToFloat)]
-    protected double health { get; set; }
+    protected double _health;
+
     /// <summary>
     /// 好感度(隐藏)(累加值)
     /// </summary>
+    [Line(Type = LPSConvert.ConvertType.ToFloat)]
     public double Likability
     {
-        get => likability; set
+        get => _likability; set
         {
             var max = LikabilityMax;
             value = Math.Max(0, value);
             if (value > max)
             {
-                likability = max;
+                _likability = max;
                 Health += value - max;
             }
             else
-                likability = value;
+                _likability = value;
         }
     }
 
-    [Line(Type = LPSConvert.ConvertType.ToFloat)]
-    protected double likability { get; set; }
+    protected double _likability;
 
     /// <summary>
     /// 清除变化
@@ -395,7 +402,7 @@ public class GameSave_VPet : IGameSave
     /// <summary>
     /// 读档
     /// </summary>
-    public static GameSave_VPet Load(ILine data) => LPSConvert.DeserializeObject<GameSave_VPet>(data);
+    public static GameSave_VPet? Load(ILine data) => LPSConvert.DeserializeObject<GameSave_VPet>(data);
     /// <summary>
     /// 存档
     /// </summary>

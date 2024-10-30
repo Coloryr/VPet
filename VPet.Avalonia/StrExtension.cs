@@ -8,11 +8,12 @@ using Avalonia.Data;
 using Avalonia.Data.Converters;
 using Avalonia.Data.Core;
 using Avalonia.Markup.Xaml;
+using VPet.Core;
 
 namespace VPet.Avalonia;
 
 /// <summary>
-/// WPF绑定转换成字符串
+/// 绑定转换成字符串
 /// </summary>
 public class StrExtension : MarkupExtension
 {

@@ -1,0 +1,68 @@
+<UserControl
+    x:Class="VPet.Avalonia.Core.Display.MessageControl"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:ll="clr-namespace:VPet.Avalonia;assembly=VPet.Avalonia"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:vm="clr-namespace:VPet.Avalonia.Core.Display"
+    Width="500"
+    Height="500"
+    x:DataType="vm:MainModel"
+    IsVisible="{Binding MessageDisplay}"
+    Opacity="{Binding MessageOpacity}"
+    mc:Ignorable="d">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceInclude Source="/Display/Theme.axaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <UserControl.ContextMenu>
+        <ContextMenu
+            Name="Menu"
+            Closed="ContextMenu_Closed"
+            Opened="ContextMenu_Opened">
+            <MenuItem
+                Command="{Binding MessageCopy}"
+                CommandParameter="{Binding #Menu}"
+                Header="{ll:Str 复制全文}" />
+            <MenuItem Command="{Binding MessageClose}" Header="{ll:Str 关闭}" />
+        </ContextMenu>
+    </UserControl.ContextMenu>
+    <Border
+        x:Name="BorderMain"
+        Margin="5"
+        Padding="10"
+        VerticalAlignment="Bottom"
+        Background="{DynamicResource Primary}"
+        BorderBrush="{DynamicResource DARKPrimaryDark}"
+        BorderThickness="5"
+        CornerRadius="5"
+        PointerEntered="Border_PointerEntered"
+        PointerExited="Border_PointerExited">
+        <StackPanel>
+            <Label
+                Margin="0,0,0,6"
+                Padding="0"
+                HorizontalAlignment="Left"
+                Content="{Binding MessageText}"
+                FontSize="32"
+                FontWeight="Bold"
+                Foreground="{DynamicResource PrimaryText}" />
+            <ScrollViewer Name="ScrollViewer1" MaxHeight="400">
+                <TextBox
+                    Background="{x:Null}"
+                    BorderBrush="{x:Null}"
+                    BorderThickness="0"
+                    FontSize="24"
+                    IsReadOnly="True"
+                    SizeChanged="TextBox_SizeChanged"
+                    Text="我说话长这样,这是我说的话巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉"
+                    TextWrapping="WrapWithOverflow" />
+            </ScrollViewer>
+            <Panel Name="MessageBoxContent" />
+        </StackPanel>
+    </Border>
+</UserControl>

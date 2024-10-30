@@ -1,0 +1,117 @@
+<UserControl
+    x:Class="VPet.Avalonia.Core.Display.WorkTimerControl"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:ll="clr-namespace:VPet.Avalonia;assembly=VPet.Avalonia"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:vm="clr-namespace:VPet.Avalonia.Core.Display"
+    x:DataType="vm:MainModel"
+    IsVisible="{Binding IsWorkDisplay}"
+    mc:Ignorable="d">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <SolidColorBrush x:Key="BorderBrush" Color="#FF0290D5" />
+            <SolidColorBrush x:Key="Background" Color="#FF81d4fa" />
+            <SolidColorBrush x:Key="ButtonBackground" Color="#AA0286C6" />
+            <SolidColorBrush x:Key="ButtonBackgroundHover" Color="#FF0286C6" />
+            <SolidColorBrush x:Key="ButtonForeground" Color="#FFffffff" />
+            <SolidColorBrush x:Key="Foreground" Color="#FF0286C6" />
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <UserControl.Styles>
+        <Style Selector="Button.t1">
+            <Setter Property="Background" Value="{DynamicResource ButtonBackground}" />
+            <Style Selector="^:pointerover">
+                <Setter Property="Background" Value="{DynamicResource ButtonBackgroundHover}" />
+            </Style>
+        </Style>
+    </UserControl.Styles>
+    <Panel Width="300" Height="180">
+        <Border
+            Name="DisplayBorder"
+            Background="{DynamicResource Background}"
+            BorderBrush="{DynamicResource BorderBrush}"
+            BorderThickness="4"
+            CornerRadius="5">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="2*" />
+                    <ColumnDefinition Width="1*" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="2*" />
+                    <RowDefinition Height="4*" />
+                    <RowDefinition Height="1.5*" />
+                </Grid.RowDefinitions>
+                <Viewbox
+                    Grid.ColumnSpan="2"
+                    Margin="45,0,5,0"
+                    HorizontalAlignment="Right"
+                    VerticalAlignment="Center">
+                    <TextBlock
+                        x:Name="tNow"
+                        FontSize="36"
+                        FontWeight="Bold"
+                        Foreground="{DynamicResource Foreground}"
+                        Text="当前已工作" />
+                </Viewbox>
+
+                <Viewbox
+                    Grid.Row="1"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center">
+                    <TextBlock
+                        x:Name="tNumber"
+                        Background="{x:Null}"
+                        FontSize="80"
+                        FontWeight="Bold"
+                        Foreground="{DynamicResource Foreground}"
+                        Text="15.0" />
+                </Viewbox>
+
+                <TextBlock
+                    x:Name="tNumberUnit"
+                    Grid.Row="1"
+                    Grid.Column="1"
+                    Margin="0,0,0,15"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Bottom"
+                    FontSize="36"
+                    Foreground="{DynamicResource Foreground}"
+                    Text="分钟" />
+                <ProgressBar
+                    Grid.Row="2"
+                    Grid.ColumnSpan="2"
+                    HorizontalAlignment="Stretch"
+                    VerticalAlignment="Stretch"
+                    Background="{x:Null}"
+                    Foreground="{DynamicResource ButtonBackgroundHover}"
+                    Value="20" />
+                <Button
+                    Grid.Row="2"
+                    Grid.ColumnSpan="2"
+                    Padding="0"
+                    HorizontalAlignment="Stretch"
+                    VerticalAlignment="Stretch"
+                    HorizontalContentAlignment="Center"
+                    VerticalContentAlignment="Center"
+                    Classes="t1"
+                    Command="{Binding StopWork}"
+                    Content="{ll:Str 停止工作}"
+                    FontSize="24"
+                    Foreground="{DynamicResource ButtonForeground}" />
+            </Grid>
+        </Border>
+        <Button
+            Margin="10,10,0,0"
+            Padding="5,5,8,7"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            Background="{DynamicResource BorderBrush}"
+            Command="{Binding SwitchState}"
+            CornerRadius="5">
+            <Path Data="M3 2.9918C3 2.44405 3.44495 2 3.9934 2H20.0066C20.5552 2 21 2.45531 21 2.9918V21.0082C21 21.556 20.5551 22 20.0066 22H3.9934C3.44476 22 3 21.5447 3 21.0082V2.9918ZM19 11V4H5V11H19ZM19 13H5V20H19V13ZM9 6H15V8H9V6ZM9 15H15V17H9V15Z" Fill="{DynamicResource ButtonForeground}" />
+        </Button>
+    </Panel>
+</UserControl>
